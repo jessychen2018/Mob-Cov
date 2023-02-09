@@ -1,13 +1,11 @@
 import numpy as np
-from collections import defaultdict
-import functools
 from functions import random_dictionary
 from functions import extract_discrete_pl
 import random
 
+
 class ContainerModel:
-    """container model (ref: the scales of human mobility)
-       + cov19 transmission (ref: an agent-based model to evaluate the covid-19 transmission risks in facilities)"""
+    """container model (ref paper: the scales of human mobility)"""
     def __init__(self, comb, c0, c1, d, npar, T, infectednum):
         self.comb = comb
         self.n_particles = npar
@@ -91,7 +89,6 @@ class ContainerModel:
             if ti==self.ActualTime:
                 self.InfectedNum[self.ActualTime:]=self.InfectedNum[self.ActualTime-1]
                 break
-        
 
     def BreakPoint(self):
         J = self.InfectedNum[0:self.ActualTime] / self.n_particles - np.array(range(1, self.ActualTime + 1)) / self.ActualTime
